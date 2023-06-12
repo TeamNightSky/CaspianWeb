@@ -1,43 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Fira+Sans:wght@400;500&display=swap');
 
-.songdata.open {
-    height: 96vh;
-    width: 96vw;
-    padding: 1%;
-    display: grid;
-    grid-template-areas:
-        "cover cover queue"
-        "title title artist";
-    grid-template-columns: 50px 36px 36px;
-    grid-template-rows: 60px 40px;
-}
-
 body {
-    padding: none;
-    overflow: hidden;
+    background-color: #131314;
+    color: #d7dadd;
 }
 
 .open > .cover {
     border-radius: 1em;
-    grid-area: "cover";
     width: 100%;
-    height: 100%;
+    height: 60%;
 }
 
 .open > .playing {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Fira Sans', monospace;
     font-weight: 400;
     font-size: 20px;
-    grid-area: "title";
     display: block;
+    color: #d7dadd;
 }
 
 .open > .artist {
-    grid-area: "artist";
     display: block;
+    font-family: 'Fira Sans', monospace;
+    color: #d7dadd;
 }
 
-.open > .queue {
-    grid-area: "queue";
-    background-color: black;
+.open {
+    width: 20%;
+    float: right;
+    display: inline;
 }
+
+.selection {
+    width: 75%;
+    height: 100%;
+    float: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,6fr));
+    gap: 15px;
+}
+
+.song {
+    background-color: #2a2f35;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.song > .cover {
+    width: 100%;
+    object-fit: contain;
+}
+
+.desc > .title, .desc > .artist {
+    font-family: 'Fira Sans', monospace;
+    margin: 5px;
+    padding-left: 10px;
+}
+
+.desc > .title {
+    font-size: 20px;
+    color: #d7dadd;
+}
+
+.desc > .artist {
+    font-size: 16px;
+    color: #a2a6aa;
+    padding-bottom: 10px;
+}
+
