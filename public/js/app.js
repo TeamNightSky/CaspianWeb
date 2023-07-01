@@ -3,21 +3,24 @@ const SERVER = "http://localhost:8001";  // Set this to Caspian instance
 var current_artist = document.getElementById("artist_name");
 var current_song = document.getElementById("song_name");
 
-fetch(SERVER + "/api/db/credentials")
+fetch(SERVER + "/db/credentials")
   .then(async (response) => {
 
 let json = await Promise.resolve(response.json());
-window["DB_URL"] = json["URL"];
+window["DB_URL"] = "http://" + json["URL"] + ":8000";
 window["DB_KEY"] = json["KEY"];
 
-let supa = supabase.createClient(window["DB_URL"], window["DB_KEY"]);
+let supa = supabase.createClient(window["DB_URL"], window["getCookie"]("access_token"));
+window["CLIENT"] = supa;
+
+
 // No security moment
 var player = null;
 window["player"] = player;
 var rate = 1.0;
 
 async function getMetadata() {
-    return await supa.from("song_metadata").select();
+    return await supa.from("songs").select();
 }
 
 async function getSong(path) {
